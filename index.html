@@ -38,7 +38,8 @@
                                 </select>
                             </div>
                             <div class="right">
-                                <a href="#" class="download">下载图片</a>
+                                <a href="#" class="download-content">下载文本</a>
+                                | <a href="#" class="download">下载图片</a>
                                 | <a href="#" class="case">示例</a>
                                 | <a href="https://bramp.github.io/js-sequence-diagrams" target="_blank">帮助</a>
                                 | <a href="https://github.com/huhai463127310/webchart/issues/new" target="_blank">反馈</a>
@@ -70,6 +71,7 @@ Andrew->>China: I am good thanks!</div>
             var diagram_div = div.find(".diagram");
             var theme_div = div.find(".theme");
             var download_link = div.find('.download');
+            var download_content_link = div.find('.download-content');
 
             // Setup the editor diagram
             var editor = ace.edit(editor_div.get(0));
@@ -90,6 +92,12 @@ Andrew->>China: I am good thanks!</div>
                 var a = $(this);
                 a.attr("download", "sequence_diagram.svg"); // TODO I could put title here
                 a.attr("href", "data:image/svg+xml," + encodeURIComponent(xml));
+            });
+
+            download_content_link.click(function (ev) {
+                var a = $(this);
+                a.attr("download", "sequence_diagram.txt"); // TODO I could put title here
+                a.attr("href", "data:text," + encodeURIComponent(editor.getValue()));
             });
 
             theme_div.change(on_change);
